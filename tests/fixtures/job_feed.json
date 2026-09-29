@@ -1,0 +1,14 @@
+[
+  {"text": "Cashier", "hostedUrl": "https://jobs.example/harrowfinch/1",
+   "categories": {"location": "Halifax", "team": "Stores"},
+   "descriptionPlain": "Serve shoppers at the tills of a Harrow & Finch store."},
+  {"text": "Replenishment Analyst", "hostedUrl": "https://jobs.example/harrowfinch/2",
+   "categories": {"location": "Head office", "team": "Supply Chain"},
+   "descriptionPlain": "Own demand forecasting for perishables in 24 stores."},
+  {"text": "Baker", "hostedUrl": "https://jobs.example/harrowfinch/3",
+   "categories": {"location": "Truro", "team": "Bakery"},
+   "descriptionHtml": "<p>Bake every morning and help us cut <b>food waste</b>.</p>"},
+  {"text": "Category Manager, Produce", "hostedUrl": "https://jobs.example/harrowfinch/4",
+   "categories": {"location": "Head office", "team": "Merchandising"},
+   "descriptionPlain": "Plan the range for the produce department."}
+]

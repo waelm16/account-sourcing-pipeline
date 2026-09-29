@@ -1,0 +1,5 @@
+scrapling[fetchers,ai]==0.4.15
+hubspot-api-client==12.0.0
+keyring
+requests
+pytest

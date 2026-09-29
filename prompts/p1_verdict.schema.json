@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prompt 1 verdict",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "domain",
+    "name",
+    "status",
+    "qualification",
+    "buyer_or_vendor",
+    "buyer_vendor_reason",
+    "evidence_links",
+    "account_tier",
+    "need_strength",
+    "current_approach",
+    "timing",
+    "evidence_confidence",
+    "qualification_reason",
+    "strongest_signal",
+    "main_uncertainty",
+    "roles_to_contact"
+  ],
+  "properties": {
+    "domain": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "error"
+      ]
+    },
+    "qualification": {
+      "type": "string",
+      "enum": [
+        "QUALIFIED",
+        "NOT_QUALIFIED"
+      ]
+    },
+    "buyer_or_vendor": {
+      "type": "string",
+      "enum": [
+        "BUYER",
+        "UNCLEAR",
+        "VENDOR"
+      ]
+    },
+    "buyer_vendor_reason": {
+      "type": "string"
+    },
+    "account_tier": {
+      "type": "string",
+      "enum": [
+        "TIER_A",
+        "TIER_B",
+        "TIER_C"
+      ]
+    },
+    "need_strength": {
+      "type": "string",
+      "enum": [
+        "STRONG",
+        "MODERATE",
+        "WEAK",
+        "NOT_FOUND"
+      ]
+    },
+    "current_approach": {
+      "type": "string",
+      "enum": [
+        "MANUAL",
+        "BASIC_TOOLS",
+        "ADVANCED_SYSTEM",
+        "UNKNOWN"
+      ]
+    },
+    "timing": {
+      "type": "string",
+      "enum": [
+        "ACTIVE_TRIGGER",
+        "NO_TRIGGER",
+        "UNKNOWN"
+      ]
+    },
+    "evidence_confidence": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "qualification_reason": {
+      "type": "string"
+    },
+    "strongest_signal": {
+      "type": "string"
+    },
+    "main_uncertainty": {
+      "type": "string"
+    },
+    "roles_to_contact": {
+      "type": "string"
+    },
+    "evidence_links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8
+    }
+  }
+}

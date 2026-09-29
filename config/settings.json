@@ -1,0 +1,52 @@
+{
+  "per_run_cap": 50,
+  "claude_auth": "subscription",
+  "_claude_auth_notes": "How the claude CLI is authenticated: \"subscription\" (the CLI login of the person running the tool; API credentials are removed from child processes and an apiKeyHelper stops the run) or \"api_key\" (metered API billing; credentials are passed through, nothing is refused). Following the terms of each connected service is the operator's responsibility.",
+  "model": "opus",
+  "source_model": "sonnet",
+  "max_turns_source": 120,
+  "max_turns_qualify": 30,
+  "max_turns_register": 80,
+  "timeout_source_s": 2400,
+  "timeout_qualify_s": 900,
+  "timeout_source_pack_s": 150,
+  "timeout_register_s": 900,
+  "run_deadline_min": 330,
+  "max_attempts": 2,
+  "max_consecutive_errors": 5,
+  "max_consecutive_transient": 3,
+  "list_name_pattern": "sourced-{date}",
+  "hubspot_write": true,
+  "hubspot": {
+    "portal_id": "00000000",
+    "owner_id": "00000000",
+    "_notes": "PLACEHOLDERS. portal_id builds the record links in the report; owner_id is the owner set on new records (leave it empty to set none). The environment variables HUBSPOT_PORTAL_ID and HUBSPOT_OWNER_ID take precedence."
+  },
+  "crawler": {
+    "user_agent": "account-sourcing-pipeline/0.1 (+contact: set this to your own address)",
+    "impersonate_browser": false,
+    "stealth_fallback": false,
+    "session_page_fetch": false,
+    "_notes": "All three switches are OFF in this public version. user_agent: sent with every request and matched against robots.txt. impersonate_browser: when true, requests use the fetch library's defaults, which present the client as a browser, and robots.txt is matched as \"*\". stealth_fallback: when true, a page that refuses the first request (401/403/407/429/503 or a bot challenge) is fetched again with a stealth browser built to pass such challenges; when false the site is recorded as blocked and skipped. session_page_fetch: when true, the /qualify session gets page-fetch tools, which fetch any URL the session asks for and do not consult robots.txt; when false the session works from the source pack and web search."
+  },
+  "register_results": false,
+  "apollo": {
+    "max_search_pages": 10,
+    "per_page": 100,
+    "enrich": false,
+    "register_results": true,
+    "result_field_label": "Sourcing P1 Result",
+    "result_list_pattern": "sourced-{date}-{result}",
+    "required_filters": [
+      "organization_naics_codes|organization_sic_codes",
+      "organization_num_employees_ranges",
+      "organization_locations"
+    ],
+    "_notes": "max_search_pages is the hard search-credit ceiling per run date (1 credit per page with results). enrich is reserved (not implemented in v1, must stay false; /source ignores it). result_field_label: create it by hand in Apollo as an account picklist with values Qualified, Maybe, Not Qualified, Prefiltered, Error; until it exists /register-results writes lists named by result_list_pattern ({result} = qualified|maybe|rejected|prefiltered|error). required_filters: each entry (a|b = either) must be present in search.json filters in net_new_search mode or /source refuses to run; list mode requires account_label_ids. enrich_pushed: after each run, /enrich fills numberofemployees and industry on HubSpot records this pipeline pushed (apollo_organizations_bulk_enrich, 1 credit per matched company, each company at most once; existing HubSpot values are never overwritten). max_enrich_per_call: the credit ceiling of one /enrich call; companies beyond it wait for the next call.",
+    "enrich_pushed": true,
+    "max_enrich_per_call": 10
+  },
+  "hubspot_tiers": [
+    "TIER_A"
+  ]
+}

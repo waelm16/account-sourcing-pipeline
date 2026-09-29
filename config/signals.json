@@ -1,0 +1,82 @@
+{
+  "_notes": "SAMPLE values for the fictional sample company (software for regional grocery chains). Read by scripts/source_pack.py through scripts/signals.py. *_terms and *_patterns are regular-expression fragments, matched case-insensitively. *_tokens, *_paths and *_subdomains are plain words. Replace all of it with terms that fit your own prompts/prompt1.md.",
+  "topic_terms": [
+    "demand forecast\\w*",
+    "forecasting",
+    "replenishment",
+    "inventory (?:management|planning|accuracy)",
+    "computer[- ]assisted ordering",
+    "automated ordering",
+    "shrink",
+    "food waste",
+    "spoilage",
+    "perishables?",
+    "fresh (?:produce|food|departments?)",
+    "out[- ]of[- ]stocks?",
+    "on[- ]shelf availability",
+    "category management",
+    "supply chain",
+    "distribution cent(?:er|re)s?",
+    "store openings?",
+    "new stores?"
+  ],
+  "role_terms": [
+    "supply chain",
+    "replenishment",
+    "demand plann\\w+",
+    "inventory",
+    "category manag\\w+",
+    "merchandis\\w+",
+    "procurement",
+    "buyer",
+    "pricing",
+    "distribution",
+    "logistics"
+  ],
+  "path_tokens": [
+    "about", "company", "leadership", "team", "careers", "jobs",
+    "news", "newsroom", "press", "media", "stories", "blog",
+    "stores", "locations", "locator",
+    "suppliers", "vendors", "supply", "distribution",
+    "sustainability", "community", "fresh", "departments", "investors"
+  ],
+  "priority_paths": [
+    "stores", "locations", "locator", "suppliers", "supply", "distribution",
+    "sustainability", "fresh", "departments", "investors"
+  ],
+  "secondary_paths": [
+    "about", "company", "leadership", "team", "careers", "jobs", "news", "newsroom", "press", "blog"
+  ],
+  "skip_patterns": [
+    "/recipes?(?:/|$)",
+    "/weekly-ad",
+    "/coupons?(?:/|$)",
+    "/products?/",
+    "/shop/",
+    "/gift-cards?"
+  ],
+  "extra_allow_patterns": [],
+  "extra_sitemap_patterns": [],
+  "light": {
+    "probe_subdomains": ["www", "careers", "jobs", "news", "stores"],
+    "seed_subdomains": ["careers", "news", "stores"],
+    "seed_paths": ["about", "careers", "jobs", "news", "stores", "locations", "suppliers", "sustainability", "leadership"],
+    "sitemap_subdomains": [],
+    "skip_patterns": [
+      "(?:shipping|return|refund|cookie|accessibility|privacy)[-_]polic",
+      "/promo",
+      "/terms",
+      "[-_]terms(?:[-_/]|$)"
+    ],
+    "stealth_paths": ["", "careers"]
+  },
+  "full": {
+    "probe_subdomains": ["www", "careers", "jobs", "news", "newsroom", "stores", "investors", "suppliers"],
+    "seed_subdomains": ["careers", "news", "newsroom", "stores", "investors", "suppliers"],
+    "seed_paths": ["about", "company", "leadership", "careers", "jobs", "news", "newsroom", "press",
+                   "stores", "locations", "suppliers", "sustainability", "community", "investors"],
+    "sitemap_subdomains": ["careers", "news"],
+    "skip_patterns": [],
+    "stealth_paths": ["", "careers", "about", "stores"]
+  }
+}

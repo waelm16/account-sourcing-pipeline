@@ -1,0 +1,59 @@
+{
+  "source_url": "EXAMPLE: fictional search for the sample company. Run /search-config with your own Apollo Companies-tab URL (https://app.apollo.io/#/companies?...) to replace this file.",
+  "mode": "net_new_search",
+  "filters": {
+    "organization_locations": [
+      "United States",
+      "Canada"
+    ],
+    "organization_num_employees_ranges": [
+      "1001,2000",
+      "2001,5000",
+      "5001,10000"
+    ],
+    "organization_naics_codes": [
+      "4451"
+    ],
+    "not_organization_naics_codes": [
+      "4244"
+    ]
+  },
+  "unmapped": [
+    {
+      "param": "qNotOrganizationKeywordTags[]",
+      "value": "Wholesale",
+      "reason": "keyword exclusion is not an MCP filter",
+      "fallback": "exclude_keyword_tags: /source lists the pool's companies with this Apollo keyword tag (free apollo_organizations_lookup) and marks them skipped_prefilter"
+    }
+  ],
+  "acknowledged_unmapped": [
+    "qNotOrganizationKeywordTags[]"
+  ],
+  "handled": [
+    {
+      "param": "prospectedByCurrentTeam[]",
+      "value": "no",
+      "note": "Net New: /source keeps only the `organizations` (net-new) bucket"
+    }
+  ],
+  "notes": [
+    "EXAMPLE values for the fictional sample company (regional grocery chains). scripts/apollo_url.py resolve refuses to run while source_url starts with EXAMPLE.",
+    "The keyword-tag exclusion is applied via exclude_keyword_tags, not by the search itself."
+  ],
+  "pre_filter": {
+    "exclude_name_regex": "\\b(wholesale|wholesalers?|distributors?|distribution|foodservice|consulting)\\b",
+    "exclude_industry_regex": "wholesale|food production|management consulting",
+    "allowed_countries": [
+      "United States",
+      "Canada"
+    ],
+    "headcount_min": 1001,
+    "headcount_max": 10000,
+    "_notes": "Client-side, applied by scripts/source_queue.py select. Unknown values never exclude. Prefiltered companies are still registered in Apollo (status skipped_prefilter) so they never resurface. Keep the regexes conservative: an excluded company is gone for good. exclude_subsidiaries skips rows that carry a parent company (CSV imports only).",
+    "exclude_subsidiaries": true
+  },
+  "generated_at": "2030-01-01",
+  "exclude_keyword_tags": [
+    "Wholesale"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "scrapling": {
+      "type": "stdio",
+      "command": ".venv\\Scripts\\scrapling-mcp.exe",
+      "args": [],
+      "env": {}
+    }
+  }
+}
